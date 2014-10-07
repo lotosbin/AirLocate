@@ -104,7 +104,7 @@
     NSMutableArray *_rangedRegions;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithStyle:style];
 	if(self)
@@ -126,19 +126,19 @@
     [_beacons removeAllObjects];
     NSArray *unknownBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityUnknown]];
     if([unknownBeacons count])
-        [_beacons setObject:unknownBeacons forKey:[NSNumber numberWithInt:CLProximityUnknown]];
+        _beacons[[NSNumber numberWithInt:CLProximityUnknown]] = unknownBeacons;
     
     NSArray *immediateBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityImmediate]];
     if([immediateBeacons count])
-        [_beacons setObject:immediateBeacons forKey:[NSNumber numberWithInt:CLProximityImmediate]];
+        _beacons[[NSNumber numberWithInt:CLProximityImmediate]] = immediateBeacons;
     
     NSArray *nearBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityNear]];
     if([nearBeacons count])
-        [_beacons setObject:nearBeacons forKey:[NSNumber numberWithInt:CLProximityNear]];
+        _beacons[[NSNumber numberWithInt:CLProximityNear]] = nearBeacons;
     
     NSArray *farBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityFar]];
     if([farBeacons count])
-        [_beacons setObject:farBeacons forKey:[NSNumber numberWithInt:CLProximityFar]];
+        _beacons[[NSNumber numberWithInt:CLProximityFar]] = farBeacons;
     
     [self.tableView reloadData];
 }
@@ -184,7 +184,7 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     NSArray *sectionValues = [_beacons allValues];
-    return [[sectionValues objectAtIndex:section] count];
+    return [sectionValues[section] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -193,7 +193,7 @@
     NSArray *sectionKeys = [_beacons allKeys];
     
     // The table view will display beacons by proximity.
-    NSNumber *sectionKey = [sectionKeys objectAtIndex:section];
+    NSNumber *sectionKey = sectionKeys[section];
     switch([sectionKey integerValue])
     {
         case CLProximityImmediate:
@@ -227,8 +227,8 @@
 	}
     
     // Display the UUID, major, minor and accuracy for each beacon.
-    NSNumber *sectionKey = [[_beacons allKeys] objectAtIndex:indexPath.section];
-    CLBeacon *beacon = [[_beacons objectForKey:sectionKey] objectAtIndex:indexPath.row];
+    NSNumber *sectionKey = [_beacons allKeys][indexPath.section];
+    CLBeacon *beacon = _beacons[sectionKey][indexPath.row];
     cell.textLabel.text = [beacon.proximityUUID UUIDString];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@, Acc: %.2fm", beacon.major, beacon.minor, beacon.accuracy];
 	

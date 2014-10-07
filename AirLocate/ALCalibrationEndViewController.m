@@ -110,7 +110,7 @@
     UIBarButtonItem *_doneButton;
 }
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if(self)

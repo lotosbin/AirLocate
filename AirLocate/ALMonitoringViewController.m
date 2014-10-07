@@ -132,7 +132,7 @@
     UIBarButtonItem *_saveButton;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
@@ -352,7 +352,7 @@
             label.adjustsFontSizeToFitWidth = YES;
         }
         
-        label.text = [[[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row] UUIDString];
+        label.text = [([ALDefaults sharedDefaults].supportedProximityUUIDs)[row] UUIDString];
         
         return label;
     }
@@ -364,7 +364,7 @@
 {
     if(pickerView == _uuidPicker)
     {
-        _uuid = [[ALDefaults sharedDefaults].supportedProximityUUIDs objectAtIndex:row];
+        _uuid = ([ALDefaults sharedDefaults].supportedProximityUUIDs)[row];
         _uuidTextField.text = [_uuid UUIDString];
     }
 }

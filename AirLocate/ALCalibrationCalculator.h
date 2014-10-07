@@ -102,7 +102,7 @@ typedef void (^ALCalibrationCompletionHandler)(NSInteger measuredPower, NSError 
 
 @interface ALCalibrationCalculator : NSObject <CLLocationManagerDelegate>
 
-- (id)initWithRegion:(CLBeaconRegion *)region completionHandler:(ALCalibrationCompletionHandler)handler;
+- (instancetype)initWithRegion:(CLBeaconRegion *)region completionHandler:(ALCalibrationCompletionHandler)handler NS_DESIGNATED_INITIALIZER;
 
 - (void)performCalibrationWithProgressHandler:(ALCalibrationProgressHandler)handler;
 - (void)cancelCalibration;

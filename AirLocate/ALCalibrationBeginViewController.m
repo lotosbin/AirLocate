@@ -119,7 +119,7 @@
     ALCalibrationEndViewController *_endViewController;
 }
 
-- (id)initWithStyle:(UITableViewStyle)style
+- (instancetype)initWithStyle:(UITableViewStyle)style
 {
 	self = [super initWithStyle:style];
 	if(self)
@@ -142,19 +142,19 @@
     [_beacons removeAllObjects];
     NSArray *unknownBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityUnknown]];
     if([unknownBeacons count])
-        [_beacons setObject:unknownBeacons forKey:[NSNumber numberWithInt:CLProximityUnknown]];
+        _beacons[[NSNumber numberWithInt:CLProximityUnknown]] = unknownBeacons;
     
     NSArray *immediateBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityImmediate]];
     if([immediateBeacons count])
-        [_beacons setObject:immediateBeacons forKey:[NSNumber numberWithInt:CLProximityImmediate]];
+        _beacons[[NSNumber numberWithInt:CLProximityImmediate]] = immediateBeacons;
     
     NSArray *nearBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityNear]];
     if([nearBeacons count])
-        [_beacons setObject:nearBeacons forKey:[NSNumber numberWithInt:CLProximityNear]];
+        _beacons[[NSNumber numberWithInt:CLProximityNear]] = nearBeacons;
     
     NSArray *farBeacons = [beacons filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"proximity = %d", CLProximityFar]];
     if([farBeacons count])
-        [_beacons setObject:farBeacons forKey:[NSNumber numberWithInt:CLProximityFar]];
+        _beacons[[NSNumber numberWithInt:CLProximityFar]] = farBeacons;
     
     [self.tableView reloadData];
 }
@@ -217,7 +217,7 @@
     }
     
     NSArray *sectionValues = [_beacons allValues];
-    return [[sectionValues objectAtIndex:i] count];
+    return [sectionValues[i] count];
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -238,7 +238,7 @@
     NSString *title = nil;
     NSArray *sectionKeys = [_beacons allKeys];
     
-    NSNumber *sectionKey = [sectionKeys objectAtIndex:i];
+    NSNumber *sectionKey = sectionKeys[i];
     switch([sectionKey integerValue])
     {
         case CLProximityImmediate:
@@ -305,8 +305,8 @@
         i--;
     }
     
-    NSNumber *sectionKey = [[_beacons allKeys] objectAtIndex:i];
-    CLBeacon *beacon = [[_beacons objectForKey:sectionKey] objectAtIndex:indexPath.row];
+    NSNumber *sectionKey = [_beacons allKeys][i];
+    CLBeacon *beacon = _beacons[sectionKey][indexPath.row];
     cell.textLabel.text = [beacon.proximityUUID UUIDString];
     cell.detailTextLabel.text = [NSString stringWithFormat:@"Major: %@, Minor: %@, Acc: %.2fm", beacon.major, beacon.minor, beacon.accuracy];
 	
@@ -315,8 +315,8 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {    
-    NSNumber *sectionKey = [[_beacons allKeys] objectAtIndex:indexPath.section];
-    CLBeacon *beacon = [[_beacons objectForKey:sectionKey] objectAtIndex:indexPath.row];
+    NSNumber *sectionKey = [_beacons allKeys][indexPath.section];
+    CLBeacon *beacon = _beacons[sectionKey][indexPath.row];
     
     if(!_inProgress)
     {
@@ -346,7 +346,7 @@
                     // Only display if the view is showing.
                     if(self.view.window)
                     {
-                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to calibrate device" message:[error.userInfo objectForKey:NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+                        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Unable to calibrate device" message:(error.userInfo)[NSLocalizedDescriptionKey] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
                         [alert show];
                         
                         // Resume displaying beacons available for calibration if the calibration process failed.

@@ -56,7 +56,6 @@
 		9B658B0D174EA66900271210 /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
 		9B9C6CA8174FC87100D946AE /* ALMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALMenuViewController.h; sourceTree = "<group>"; };
 		9B9C6CA9174FC87100D946AE /* ALMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALMenuViewController.m; sourceTree = "<group>"; };
-		9BCE8DE817600E940089D274 /* ReadMe.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = ReadMe.txt; sourceTree = SOURCE_ROOT; };
 		9BE35B9817556B7A00E4C77A /* ALRangingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALRangingViewController.h; sourceTree = "<group>"; };
 		9BE35B9917556B7A00E4C77A /* ALRangingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ALRangingViewController.m; sourceTree = "<group>"; };
 		9BE35B9B17556F2D00E4C77A /* ALDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ALDefaults.h; sourceTree = "<group>"; };
@@ -82,7 +81,6 @@
 		9B59E5A7174E7BF20083A8A5 = {
 			isa = PBXGroup;
 			children = (
-				9BCE8DE817600E940089D274 /* ReadMe.txt */,
 				9B59E5B9174E7BF20083A8A5 /* AirLocate */,
 				9B59E5B2174E7BF20083A8A5 /* Frameworks */,
 				9B59E5B1174E7BF20083A8A5 /* Products */,
@@ -322,6 +320,7 @@
 		9B59E5CE174E7BF20083A8A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirLocate/AirLocate-Prefix.pch";
 				INFOPLIST_FILE = "AirLocate/AirLocate-Info.plist";
@@ -334,6 +333,7 @@
 		9B59E5CF174E7BF20083A8A5 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AirLocate/AirLocate-Prefix.pch";
 				INFOPLIST_FILE = "AirLocate/AirLocate-Info.plist";

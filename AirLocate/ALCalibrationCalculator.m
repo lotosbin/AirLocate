@@ -118,7 +118,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
     float _percentComplete;
 }
 
-- (id)initWithRegion:(CLBeaconRegion *)region completionHandler:(ALCalibrationCompletionHandler)handler
+- (instancetype)initWithRegion:(CLBeaconRegion *)region completionHandler:(ALCalibrationCompletionHandler)handler
 {
     self = [super init];
     if(self)
@@ -241,7 +241,7 @@ static const NSTimeInterval ALCalibrationDwell = 20.0f;
                     {
                         // Measured power is an average of the mid-80th percentile of RSSI samples.
                         NSUInteger outlierPadding = allBeacons.count * 0.1f;                    
-                        [allBeacons sortUsingDescriptors:[NSArray arrayWithObject:[NSSortDescriptor sortDescriptorWithKey:@"rssi" ascending:YES]]];
+                        [allBeacons sortUsingDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"rssi" ascending:YES]]];
                         NSArray *sample = [allBeacons subarrayWithRange:NSMakeRange(outlierPadding, allBeacons.count - (outlierPadding * 2))];
                         measuredPower = [[sample valueForKeyPath:@"@avg.rssi"] integerValue];
                     }

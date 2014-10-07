@@ -98,7 +98,7 @@
 
 @implementation ALDefaults
 
-- (id)init
+- (instancetype)init
 {
     self = [super init];
     if(self)
@@ -106,7 +106,8 @@
         // uuidgen should be used to generate UUIDs.
         _supportedProximityUUIDs = @[[[NSUUID alloc] initWithUUIDString:@"73CC4B50-6160-11E3-949A-0800200C9A66"],
                                       [[NSUUID alloc] initWithUUIDString:@"5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"],
-                                      [[NSUUID alloc] initWithUUIDString:@"74278BDA-B644-4520-8F0C-720EAF059935"]];
+                                     [[NSUUID alloc] initWithUUIDString:@"74278BDA-B644-4520-8F0C-720EAF059935"],
+                                     [[NSUUID alloc] initWithUUIDString:@"D57092AC-DFAA-446C-8EF3-C81AA22815B5"]];
         _defaultPower = @-59;
     }
     
@@ -126,7 +127,7 @@
 
 - (NSUUID *)defaultProximityUUID
 {
-    return [_supportedProximityUUIDs objectAtIndex:0];
+    return _supportedProximityUUIDs[0];
 }
 
 @end
