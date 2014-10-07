@@ -107,7 +107,8 @@
         _supportedProximityUUIDs = @[[[NSUUID alloc] initWithUUIDString:@"73CC4B50-6160-11E3-949A-0800200C9A66"],
                                       [[NSUUID alloc] initWithUUIDString:@"5A4BCFCE-174E-4BAC-A814-092E77F6B7E5"],
                                      [[NSUUID alloc] initWithUUIDString:@"74278BDA-B644-4520-8F0C-720EAF059935"],
-                                     [[NSUUID alloc] initWithUUIDString:@"D57092AC-DFAA-446C-8EF3-C81AA22815B5"]];
+                                     [[NSUUID alloc] initWithUUIDString:@"D57092AC-DFAA-446C-8EF3-C81AA22815B5"],
+                                     [[NSUUID alloc]initWithUUIDString:@"84CECC0C-E38F-0B0A-F67D-557EA63BF5AE"]];
         _defaultPower = @-59;
     }
     

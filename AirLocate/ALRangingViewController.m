@@ -146,6 +146,8 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     // Start ranging when the view appears.
+
+    [_locationManager requestAlwaysAuthorization];
     [_rangedRegions enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
         CLBeaconRegion *region = obj;
         [_locationManager startRangingBeaconsInRegion:region];
